@@ -209,16 +209,20 @@
           <div class="total-price">Total: Rp <span id="total-amount">0</span></div>
 
           <h4 style="margin-bottom: 10px; text-align: left;">📋 Data Pemesan:</h4>
+       <form action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="faa53aa6-3237-4f2c-b905-0167728011f2">
+    <input type="hidden" name="subject" value="Ada Pesanan Baru di MaoMangan!">
+    <div class="form-group">
+        <label>Nama Lengkap:</label>
+        <input type="text" id="nama" name="Nama Pembeli" placeholder="Masukkan nama kamu..." required>
+    </div>
           <div class="form-group">
-            <label>Nama Lengkap:</label>
-            <input type="text" id="nama" placeholder="Masukkan nama kamu...">
-          </div>
-          <div class="form-group">
-            <label>Nomor WhatsApp/Telepon:</label>
-            <input type="tel" id="telepon" placeholder="Contoh: 08123456789">
-          </div>
+        <label>Nomor WhatsApp/Telepon:</label>
+        <input type="tel" id="telepon" name="Nomor WhatsApp" placeholder="Contoh: 08123456789" required>
+    </div>
 
-          <button class="btn-checkout" onclick="checkout()">Bayar via QRIS 🎉</button>
+          <button type="submit" class="btn-checkout" onclick="checkout()">Bayar via QRIS 🎉</button>
+          </form>
         </div>
       </div>
 
