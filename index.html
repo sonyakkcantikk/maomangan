@@ -209,7 +209,7 @@
           <div class="total-price">Total: Rp <span id="total-amount">0</span></div>
 
           <h4 style="margin-bottom: 10px; text-align: left;">📋 Data Pemesan:</h4>
-       <form action="https://api.web3forms.com/submit" method="POST">
+      <form id="myOrderForm"></form>
     <input type="hidden" name="access_key" value="faa53aa6-3237-4f2c-b905-0167728011f2">
     <input type="hidden" name="subject" value="Ada Pesanan Baru di MaoMangan!">
     <input type="hidden" name="Detail Pesanan" id="input-pesanan">
@@ -238,7 +238,7 @@
         <p style="font-size: 0.85rem; color: #555;">Atas Nama: <b>MaoMangan Official</b></p>
         <p style="font-size: 0.85rem; color: #ff4757; margin-top: 5px;" id="status-pesan"></p>
         
-        <button class="btn-confirm" onclick="simulasiBayarBerhasil()">Saya Sudah Bayar ✅</button>
+        <button class="btn-confirm" onclick="simulasiBayarBerhasil(event)">Saya Sudah Bayar</button>
       </div>
 
       <!-- HALAMAN SUKSES PEMBAYARAN -->

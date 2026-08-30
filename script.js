@@ -106,7 +106,6 @@ function closeCheckout() {
 
 // Munculkan QRIS & Siapkan Data Pesanan
 function checkout() {
-    // Masukkan data pesanan & total harga ke hidden input HTML
     let daftarPesanan = cart.map(item => `${item.name} (${item.qty}x)`).join(", ");
     let total = cart.reduce((sum, item) => sum + item.price, 0);
 
@@ -117,7 +116,6 @@ function checkout() {
         document.getElementById('input-total').value = "Rp " + total.toLocaleString("id-ID");
     }
 
-    // Tampilkan QRIS box
     let qrisBox = document.getElementById("qris-box");
     if (qrisBox) {
         qrisBox.classList.remove("hidden");
@@ -125,28 +123,29 @@ function checkout() {
 }
 
 // Dipanggil saat klik tombol "Saya Sudah Bayar"
-function simulasiBayarBerhasil() {
-    // Kirim data ke Web3Forms di latar belakang (tanpa pindah halaman)
-    const formElement = document.querySelector('form');
+function simulasiBayarBerhasil(event) {
+    if (event) event.preventDefault(); // Mencegah browser reload / pindah halaman
+
+    // Kirim data ke Web3Forms secara otomatis di background
+    const formElement = document.getElementById('myOrderForm') || document.querySelector('form');
     if (formElement) {
         const formData = new FormData(formElement);
         fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             body: formData
+        }).then(response => {
+            console.log("Pesanan berhasil dikirim ke Web3Forms");
+        }).catch(error => {
+            console.error("Gagal mengirim:", error);
         });
     }
 
-    // Sembunyikan QRIS box
+    // Sembunyikan QRIS box & tampilkan modal sukses
     let qrisBox = document.getElementById("qris-box");
-    if (qrisBox) {
-        qrisBox.classList.add("hidden");
-    }
+    if (qrisBox) qrisBox.classList.add("hidden");
 
-    // Tampilkan modal berhasil
     let successModal = document.getElementById("successModal");
-    if (successModal) {
-        successModal.classList.remove("hidden");
-    }
+    if (successModal) successModal.classList.remove("hidden");
 }
 
 function closeSuccess() {
