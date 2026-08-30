@@ -104,16 +104,49 @@ function closeCheckout() {
     document.getElementById("checkoutModal").classList.add("hidden");
 }
 
-// Kirim Pesanan ke Web3Forms
-function sendOrder() {
+// Munculkan QRIS & Siapkan Data Pesanan
+function checkout() {
+    // Masukkan data pesanan & total harga ke hidden input HTML
     let daftarPesanan = cart.map(item => `${item.name} (${item.qty}x)`).join(", ");
     let total = cart.reduce((sum, item) => sum + item.price, 0);
-    
-    document.getElementById('input-pesanan').value = daftarPesanan;
-    document.getElementById('input-total').value = "Rp " + total.toLocaleString("id-ID");
 
-    closeCheckout();
-    document.getElementById("successModal").classList.remove("hidden");
+    if (document.getElementById('input-pesanan')) {
+        document.getElementById('input-pesanan').value = daftarPesanan;
+    }
+    if (document.getElementById('input-total')) {
+        document.getElementById('input-total').value = "Rp " + total.toLocaleString("id-ID");
+    }
+
+    // Tampilkan QRIS box
+    let qrisBox = document.getElementById("qris-box");
+    if (qrisBox) {
+        qrisBox.classList.remove("hidden");
+    }
+}
+
+// Dipanggil saat klik tombol "Saya Sudah Bayar"
+function simulasiBayarBerhasil() {
+    // Kirim data ke Web3Forms di latar belakang (tanpa pindah halaman)
+    const formElement = document.querySelector('form');
+    if (formElement) {
+        const formData = new FormData(formElement);
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+        });
+    }
+
+    // Sembunyikan QRIS box
+    let qrisBox = document.getElementById("qris-box");
+    if (qrisBox) {
+        qrisBox.classList.add("hidden");
+    }
+
+    // Tampilkan modal berhasil
+    let successModal = document.getElementById("successModal");
+    if (successModal) {
+        successModal.classList.remove("hidden");
+    }
 }
 
 function closeSuccess() {
