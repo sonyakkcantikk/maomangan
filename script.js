@@ -104,8 +104,14 @@ function closeCheckout() {
     document.getElementById("checkoutModal").classList.add("hidden");
 }
 
-// Kirim Pesanan
+// Kirim Pesanan ke Web3Forms
 function sendOrder() {
+    let daftarPesanan = cart.map(item => `${item.name} (${item.qty}x)`).join(", ");
+    let total = cart.reduce((sum, item) => sum + item.price, 0);
+    
+    document.getElementById('input-pesanan').value = daftarPesanan;
+    document.getElementById('input-total').value = "Rp " + total.toLocaleString("id-ID");
+
     closeCheckout();
     document.getElementById("successModal").classList.remove("hidden");
 }
