@@ -1,0 +1,516 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff8f0;
+  color: #3e2723;
+  padding-bottom: 50px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   WELCOME SCREEN
+========================= */
+.welcome {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #ead2b5;
+  padding: 20px;
+}
+
+.welcome-box {
+  padding: 30px;
+  max-width: 550px;
+  width: 100%;
+}
+
+.mascot {
+  font-size: 100px;
+  display: inline-block;
+  animation: floating 3s ease-in-out infinite;
+}
+
+.welcome h1 {
+  font-size: 45px;
+}
+
+.welcome h2 {
+  margin: 10px 0;
+}
+
+.welcome p {
+  color: #6d4c41;
+  margin: 15px 0 30px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.main-button {
+  background: #6f4e37;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.full {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+nav {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.cart-button {
+  background: #6f4e37;
+  color: white;
+  border-radius: 30px;
+  padding: 10px 17px;
+  font-weight: bold;
+}
+
+/* =========================
+   HERO
+========================= */
+.hero {
+  max-width: 1100px;
+  margin: 20px auto 40px;
+  padding: 40px 30px;
+  border-radius: 30px;
+  background: #f0dfca;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 45px;
+  margin: 10px 0;
+}
+
+.hero p {
+  color: #795548;
+}
+
+.hero-mascot {
+  font-size: 100px;
+  display: inline-block;
+  animation: floating 3s ease-in-out infinite;
+}
+
+/* ANIMASI FLOATING MASCOT */
+@keyframes floating {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+/* =========================
+   MENU & CATALOG
+========================= */
+.menu-section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.section-title p {
+  color: #a07855;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.section-title h2 {
+  font-size: 30px;
+  margin: 8px 0 25px;
+}
+
+.categories {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  margin-bottom: 30px;
+  padding-bottom: 5px;
+}
+
+.categories button {
+  padding: 10px 17px;
+  border-radius: 20px;
+  background: #ead8c2;
+  color: #3e2723;
+  white-space: nowrap;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.product {
+  background: white;
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-image {
+  height: 160px;
+  border-radius: 15px;
+  background: #ead8c2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 75px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ganti ke contain biar foto nampil utuh presisi */
+  padding: 8px;        /* Memberi sedikit jarak manis dari pinggir */
+}
+
+.product h3 {
+  margin-bottom: 7px;
+  font-size: 1.1rem;
+}
+
+.product-price {
+  color: #795548;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.product button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: #6f4e37;
+  color: white;
+  font-weight: bold;
+}
+
+/* =========================
+   MODAL (POPUP QRIS / KERANJANG)
+========================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 450px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: transparent;
+  font-size: 28px;
+  color: #3e2723;
+}
+
+.modal-image {
+  height: 180px;
+  border-radius: 20px;
+  background: #ead8c2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-box label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.modal-box textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* =========================
+   CART & SUCCESS
+========================= */
+.cart-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item p {
+  color: #795548;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.remove {
+  background: #d9534f;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #eee;
+}
+
+.success {
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 70px;
+  margin-bottom: 15px;
+}
+
+/* =========================
+   REVIEWS & RATING
+========================= */
+.reviews {
+  margin-top: 30px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.review {
+  background: #fff8f0;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+.review-stars {
+  color: #e5a623;
+}
+
+.review-name {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 25px 0;
+}
+
+.stars span {
+  font-size: 40px;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.stars span.active {
+  color: #e5a623;
+}
+
+/* =========================
+   UTILITY & RESPONSIVE MOBILE
+========================= */
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .welcome h1 {
+    font-size: 35px;
+  }
+
+  .hero {
+    margin: 10px 15px 30px;
+    padding: 30px 20px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero-mascot {
+    font-size: 60px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .product {
+    padding: 10px;
+  }
+
+  .product-image {
+    height: 120px;
+    font-size: 50px;
+  }
+
+  .product h3 {
+    font-size: 0.95rem;
+  }
+}
+/* ANIMASI LOGO TUING-TUING */
+.logo-bounce-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+/* Memaksa SEMUA gambar di dalam container logonya berukuran imut */
+.logo-bounce-container img {
+  width: 120px !important; /* Paksa ukurannya 120px (bisa diganti misal 100px) */
+  max-width: 120px !important;
+  height: auto !important;
+  animation: tuingJatuh 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.logo-bounce {
+  width: 100%;
+  max-width: 120px; /* Atur angka ini (misal 100px-150px) sesuai selera */
+  height: auto;
+  animation: tuingJatuh 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes tuingJatuh {
+  0% {
+    opacity: 0;
+    transform: translateY(-300px) scaleY(1.2) rotate(-20deg);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(0) scaleY(0.7) scaleX(1.3) rotate(10deg);
+  }
+  55% {
+    transform: translateY(-40px) scaleY(1.1) scaleX(0.9) rotate(-8deg);
+  }
+  70% {
+    transform: translateY(0) scaleY(0.85) scaleX(1.15) rotate(5deg);
+  }
+  82% {
+    transform: translateY(-12px) scaleY(1.05) scaleX(0.95) rotate(-3deg);
+  }
+  92% {
+    transform: translateY(0) scaleY(0.98) scaleX(1.02) rotate(1deg);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+/* Efek Hover Card Melayang & Maju ke Depan */
+.menu-card, .product {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.menu-card:hover, .product:hover {
+  transform: translateY(-8px) scale(1.02); /* Terangkat ke atas & membesar dikit */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Bayangan makin tebal biar kelihatan melayang */
+}
+
+/* Biar gambarnya ikut agak membesar sedikit pas di-hover */
+.menu-card:hover .menu-img, .product:hover .product-image img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+/* KODE KOTAK PRODUK + EFEK MELAYANG */
+.product, .menu-card {
+  padding: 10px;
+  border-radius: 15px;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease !important;
+  cursor: pointer;
+}
+
+/* EFEK PAS MOUSE DI-HOVER (MAJU KE DEPAN) */
+.product:hover, .menu-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15) !important;
+}
